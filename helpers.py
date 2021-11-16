@@ -14,12 +14,12 @@ def timestamp():
 def print_error(err_msg):
     print(err_msg)
     with open(err_file, 'a') as fout:
-        fout.write(err_msg)
+        fout.write(f"{timestamp()} {err_msg}\n")
 
 def print_log(log_msg):
     print(log_msg)
     with open(log_file, 'a') as fout:
-        fout.write(log_msg)
+        fout.write(f"{timestamp()} {log_msg}\n")
 
 # def read_filter_data():
 #     plas_filter = { line[0]: float(line[1]) for line in [line.strip("\n").split("\t") for line in open(plas_filter_file).readlines()] }
@@ -36,6 +36,9 @@ def delete_dir_if_exist(path):
 
 def create_fragment_dirs():
     create_dir_if_needed(frag_write_path)
+
+def create_kmer_dirs():
+    create_dir_if_needed(kmer_write_path)
 
 # def create_sequence_dirs():
 #     # sequences
@@ -56,12 +59,6 @@ def create_fragment_dirs():
 #     create_dir_if_needed(plas_frag_split_path)
 #     create_dir_if_needed(chrom_frag_split_path)
 #     create_dir_if_needed(ex_plas_frag_split_path)
-
-# def create_kmer_files():
-#     # kmer files
-#     create_dir_if_needed(plas_7mer_write_path)
-#     create_dir_if_needed(chrom_7mer_write_path)
-#     create_dir_if_needed(ex_plas_7mer_write_path)
 
 # def create_inc_factor_dirs():
 #     # inc factor files

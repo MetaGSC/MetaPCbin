@@ -3,7 +3,7 @@ from Bio import SeqIO
 
 from progress_bar import *
 from constants import *
-from helpers import create_fragment_dirs, timestamp, print_error, print_log
+from helpers import create_fragment_dirs, print_error, print_log
     
 def frag_generator(files, coverage):
     ''' Iterate through the input files and generate fragments
@@ -29,7 +29,7 @@ def frag_generator(files, coverage):
                 yield record.id, fragments
 
         except Exception as err:
-            print_error(f"{timestamp()} Error reading fasta file {filename}: {err}\n")
+            print_error(f"Error reading fasta file {filename}: {err}")
 
 def write_frags(seq_id, seq_frags):
     ''' Write the generated fragments into files
@@ -39,22 +39,26 @@ def write_frags(seq_id, seq_frags):
             for frag in seq_frags:
                 fout.write(f'>{frag["n"]} {frag["id"]}\n{frag["seq"]}\n')
     except Exception as err:
-       print_error(f"{timestamp()} Error writing fragment fasta file: {err}\n")
+       print_error(f"Error writing fragment fasta file: {err}")
 
 def fragment(input_files, coverage):
     ''' Handler function for metagenomic fragment generation
     '''
     print_log("Generating metagenomic fragments...")
     create_fragment_dirs()
+    frag_count = {}
 
     frag_gen = frag_generator(input_files, coverage)
 
-    prog_bar = create_progress_bar(frag_bar_desc)
+    progress_bar = create_progress_bar(frag_bar_desc)
     for input in enumerate(frag_gen):
         _, seqs = input
         seq_id, seq_frags = seqs
+        seq_frag_count = len(seq_frags)
         write_frags(seq_id, seq_frags)
-        update_progress_bar(prog_bar, len(seq_frags))
+        update_progress_bar(progress_bar, seq_frag_count)
+        frag_count[seq_id] = seq_frag_count
 
-    close_progress_bar(prog_bar)
+    close_progress_bar(progress_bar)
     print_log("Generating metagenomic fragments completed.")
+    return frag_count

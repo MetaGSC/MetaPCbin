@@ -1,8 +1,9 @@
 import os
 
 from fragment import fragment
+from kmer import count_kmers
 from constants import *
-from helpers import timestamp, print_error
+from helpers import print_error
 
 def preprocess(args):
     ''' Preprocess sequences t0 generate kmer, biomarker features
@@ -21,7 +22,8 @@ def preprocess(args):
                 files = os.listdir(args.directory)
                 files = [os.path.join(args.directory, file) for file in files]
             except Exception as err:
-                print_error(f"{timestamp()} Error listing input directory files: {err}\n")
+                print_error(f"Error listing input directory files: {err}\n")
                 return -1
-        fragment(files, args.coverage)
+        frag_count = fragment(files, args.coverage)
+        count_kmers(args.threads, frag_count)
         return 0
