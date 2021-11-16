@@ -1,7 +1,7 @@
 import os
 
-from fragment import fragment
-from kmer import count_kmers
+from preprocess.fragment import fragment
+from preprocess.kmer import count_kmers
 from constants import *
 from helpers import print_error
 

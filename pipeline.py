@@ -2,7 +2,7 @@ import sys
 import argparse
 
 from constants import *
-from preprocess import preprocess
+from preprocess.preprocess import preprocess
 
 def parse_user_arguements():
     parser = argparse.ArgumentParser(

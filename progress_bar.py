@@ -15,4 +15,3 @@ def update_progress_bar(pbar,i):
 
 def close_progress_bar(pbar):
     pbar.close()
- 
