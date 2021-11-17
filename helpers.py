@@ -42,15 +42,9 @@ def create_circ_dirs():
 def create_inc_factor_dirs():
     create_dir_if_needed(incfac_out_path)
 
-# def create_orit_dirs():
-#   # orit files
-#     create_dir_if_needed(plas_orit_out_path)
-#     create_dir_if_needed(chrom_orit_out_path)
-#     create_dir_if_needed(ex_plas_orit_out_path)
-    
-#     create_dir_if_needed(plas_orit_write_path)
-#     create_dir_if_needed(chrom_orit_write_path)
-#     create_dir_if_needed(ex_plas_orit_write_path)
+def create_orit_dirs():
+    create_dir_if_needed(orit_out_path)
+
 
 # def create_rrna_dirs():
 #   # rrna files

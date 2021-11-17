@@ -7,7 +7,7 @@ from progress_bar import *
 from constants import *
 
 def calc_inc_factor(blastn_path, files, threads, seq_map):
-    ''' Generates the incompatibility factor features for each sequence using nucmer
+    ''' Generates the incompatibility factor features for each sequence using blastn
     '''
     print_log("Generating incompatibility factor features...")
     try:
@@ -78,4 +78,4 @@ def calc_inc_factor(blastn_path, files, threads, seq_map):
         print_log("Generating incompatibility factor features completed.\n")
        
     except Exception as err:
-        print_error(f"Error calculating inc. factor for file:{name} {err}")
+        print_error(f"Error calculating inc. factor: {err}")

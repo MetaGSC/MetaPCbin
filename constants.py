@@ -15,6 +15,7 @@ kmer_bar_desc =  "kmers                 "
 circ_bar_desc =  "circularity           "
 gc_bar_desc =    "gc content            "
 inc_fac_desc =   "incompatibility factor"
+orit_bar_desc =  "orit                  "
 
 # Databases
 db_path = "./biomarker_dbs"
@@ -38,6 +39,7 @@ circ_write_path = "results/circular"
 circ_out_path = "temp/nucmer_out"
 circ_split_path = "temp/split"
 incfac_out_path = "temp/incfac"
+orit_out_path = "temp/orit"
 
 # # rrna files
 # plas_rrna_write_path = "results/plasmid/Data/rrna"
@@ -47,12 +49,3 @@ incfac_out_path = "temp/incfac"
 # plas_rrna_out_path = "results/plasmid/extra/rrna-out"
 # chrom_rrna_out_path = "results/chromosome/extra/rrna-out"
 # ex_plas_rrna_out_path = "results/extra-plasmid/extra/rrna-out"
-
-# # orit files
-# plas_orit_out_path = "results/plasmid/extra/orit-out"
-# chrom_orit_out_path = "results/chromosome/extra/orit-out"
-# ex_plas_orit_out_path = "results/extra-plasmid/extra/orit-out"
-
-# plas_orit_write_path = "results/plasmid/Data/orit"
-# chrom_orit_write_path = "results/chromosome/Data/orit"
-# ex_plas_orit_write_path = "results/extra-plasmid/Data/orit"
