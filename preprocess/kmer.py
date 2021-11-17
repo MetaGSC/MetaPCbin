@@ -5,15 +5,15 @@ from helpers import create_kmer_dirs, print_error, print_log
 from constants import *
 import os
 
-def count_kmers(threads, frag_count):
+def count_kmers(seq2vec_path, threads, frag_count):
     ''' Generates the kmer counts for each fragment using seq2vec
     '''
     try:
         print_log("Generating kmer counts...")
         create_kmer_dirs()
-        progress_bar = create_progress_bar(kmer_bar_desc)
+        progress_bar = create_visual_progress_bar(sum(frag_count.values()), kmer_bar_desc)
         for filename in os.listdir(frag_write_path):
-            name = os.path.splitext(filename)[0]
+            name = os.path.splitext(os.path.basename(filename))[0]
             frag_file = os.path.join(frag_write_path, filename)
             write_file = os.path.join(kmer_write_path, name)
             args = [

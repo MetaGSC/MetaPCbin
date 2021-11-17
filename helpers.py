@@ -40,25 +40,10 @@ def create_fragment_dirs():
 def create_kmer_dirs():
     create_dir_if_needed(kmer_write_path)
 
-# def create_sequence_dirs():
-#     # sequences
-#     create_dir_if_needed(seq_plas_write_path)
-#     create_dir_if_needed(seq_chrom_write_path)
-#     create_dir_if_needed(seq_extra_plasmid_write_path)
-
-# def create_circ_dirs():
-#      # circularity files
-#     create_dir_if_needed(plas_circ_write_path)
-#     create_dir_if_needed(chrom_circ_write_path)
-#     create_dir_if_needed(ex_plas_circ_write_path)
-
-#     create_dir_if_needed(plas_circ_out_path)
-#     create_dir_if_needed(chrom_circ_out_path)
-#     create_dir_if_needed(ex_plas_circ_out_path)
-
-#     create_dir_if_needed(plas_frag_split_path)
-#     create_dir_if_needed(chrom_frag_split_path)
-#     create_dir_if_needed(ex_plas_frag_split_path)
+def create_circ_dirs():
+    create_dir_if_needed(circ_write_path)
+    create_dir_if_needed(circ_out_path)
+    create_dir_if_needed(circ_split_path)
 
 # def create_inc_factor_dirs():
 #     # inc factor files

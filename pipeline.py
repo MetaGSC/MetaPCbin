@@ -29,6 +29,22 @@ def parse_user_arguements():
         '-t','--threads', help='number of threads', 
         required=False, type=int, default=default_threads
         )
+    parser.add_argument(
+        '--cmscan', help='path to cmscan', 
+        required=False, type=str, default=default_cmscan_path
+        )
+    parser.add_argument(
+        '--blastn', help='path to blastn', 
+        required=False, type=str, default=default_blastn_path
+        )
+    parser.add_argument(
+        '--seq2vec', help='path to seq2vec', 
+        required=False, type=str, default=default_seq2vec_path
+        )
+    parser.add_argument(
+        '--nucmer', help='path to nucmer',
+        required=False, type=str, default=default_nucmer_path
+        )
 
     return parser.parse_args()
 

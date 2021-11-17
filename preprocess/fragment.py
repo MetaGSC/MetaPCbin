@@ -1,5 +1,6 @@
 from random import randint
 from Bio import SeqIO
+import os
 
 from progress_bar import *
 from constants import *
@@ -35,7 +36,7 @@ def write_frags(seq_id, seq_frags):
     ''' Write the generated fragments into files
     '''
     try:
-        with open(f'{frag_write_path}/{seq_id}.fasta', 'w+') as fout:
+        with open(os.path.join(frag_write_path, f'{seq_id}.fasta'), 'w+') as fout:
             for frag in seq_frags:
                 fout.write(f'>{frag["n"]} {frag["id"]}\n{frag["seq"]}\n')
     except Exception as err:

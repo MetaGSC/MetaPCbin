@@ -6,17 +6,22 @@ default_coverage = 5
 frag_len = 5000
 k = 7
 max_frag = 10**6
+DIRECTORY_INPUT = 0
+FILE_INPUT = 1
 
 # progress bar descriptions
-frag_bar_desc  = "fragments "
-kmer_bar_desc =  "kmers     "
+frag_bar_desc  = "fragments     "
+kmer_bar_desc =  "kmers         "
+circ_bar_desc =  "circularity   "
 
 # Databases
 db_path = "./biomarker_dbs"
-cmscan_path = "cmscan"
-blastn_path = "blastn"
-seq2vec_path = "seq2vec"
-nucmer_path = "nucmer"
+
+# biomarker tools
+default_cmscan_path = "cmscan"
+default_blastn_path = "blastn"
+default_seq2vec_path = "seq2vec"
+default_nucmer_path = "nucmer"
 
 # log files
 err_file = "error.txt"
@@ -25,6 +30,11 @@ log_file = "log.txt"
 # results paths
 frag_write_path = "results/fragments"
 kmer_write_path = "results/kmers"
+circ_write_path = "results/circular"
+
+# temp paths
+circ_out_path = "temp/nucmer_out"
+circ_split_path = "temp/split"
 
 # # seq target csv files
 # seq_plas_target_path = "results/plasmid/seq_target.csv"
