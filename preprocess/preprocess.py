@@ -4,6 +4,7 @@ from Bio import SeqIO
 from preprocess.fragment import fragment
 from preprocess.kmer import count_kmers
 from preprocess.circular import calc_circularity
+from preprocess.gc_content import gc_content
 from constants import *
 from helpers import print_error
 
@@ -44,6 +45,8 @@ def preprocess(args):
         #biomarkers
         seq_map = generate_seq_map(files)
         input_mode = DIRECTORY_INPUT if args.directory != None else FILE_INPUT
+
         calc_circularity(args.nucmer, args.threads, files, seq_map, input_mode)
+        gc_content(files, seq_map)
 
         return 0

@@ -13,6 +13,7 @@ FILE_INPUT = 1
 frag_bar_desc  = "fragments     "
 kmer_bar_desc =  "kmers         "
 circ_bar_desc =  "circularity   "
+gc_bar_desc =    "gc content    "
 
 # Databases
 db_path = "./biomarker_dbs"
@@ -76,11 +77,6 @@ circ_split_path = "temp/split"
 # plas_rrna_out_path = "results/plasmid/extra/rrna-out"
 # chrom_rrna_out_path = "results/chromosome/extra/rrna-out"
 # ex_plas_rrna_out_path = "results/extra-plasmid/extra/rrna-out"
-
-# # gc-content files
-# plas_gccontent_write_path = "results/plasmid/Data/gccontent"
-# chrom_gccontent_write_path = "results/chromosome/Data/gccontent"
-# ex_plas_gccontent_write_path = "results/extra-plasmid/Data/gccontent"
 
 # # orit files
 # plas_orit_out_path = "results/plasmid/extra/orit-out"
