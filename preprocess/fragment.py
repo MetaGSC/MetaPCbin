@@ -45,7 +45,7 @@ def write_frags(seq_id, seq_frags):
 def fragment(input_files, coverage):
     ''' Handler function for metagenomic fragment generation
     '''
-    print_log("Generating metagenomic fragments...")
+    print_log("\nGenerating metagenomic fragments...")
     create_fragment_dirs()
     frag_count = {}
 
@@ -61,5 +61,5 @@ def fragment(input_files, coverage):
         frag_count[seq_id] = seq_frag_count
 
     close_progress_bar(progress_bar)
-    print_log("Generating metagenomic fragments completed.")
+    print_log("Generating metagenomic fragments completed.\n")
     return frag_count

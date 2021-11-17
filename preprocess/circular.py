@@ -176,4 +176,4 @@ def calc_circularity(nucmer_path, threads, files, seq_map, input_mode):
                 print_error(f"Error reading file {filename}: {err}")
 
     close_progress_bar(progress_bar)
-    print_log("Generating circularity features completed.")
+    print_log("Generating circularity features completed.\n")

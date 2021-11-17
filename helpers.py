@@ -21,11 +21,6 @@ def print_log(log_msg):
     with open(log_file, 'a') as fout:
         fout.write(f"{timestamp()} {log_msg}\n")
 
-# def read_filter_data():
-#     plas_filter = { line[0]: float(line[1]) for line in [line.strip("\n").split("\t") for line in open(plas_filter_file).readlines()] }
-#     chrom_filter = { line[0]: float(line[1]) for line in [line.strip("\n").split("\t") for line in open(chrom_filter_file).readlines()] }
-#     return plas_filter, chrom_filter
-
 def create_dir_if_needed(path):
     if not os.path.exists(path):
         os.makedirs(path)
@@ -44,15 +39,8 @@ def create_circ_dirs():
     create_dir_if_needed(circ_out_path)
     create_dir_if_needed(circ_split_path)
 
-# def create_inc_factor_dirs():
-#     # inc factor files
-#     create_dir_if_needed(plas_inc_out_path)
-#     create_dir_if_needed(chrom_inc_out_path)
-#     create_dir_if_needed(ex_plas_inc_out_path)
-
-#     create_dir_if_needed(plas_inc_write_path)
-#     create_dir_if_needed(chrom_inc_write_path)
-#     create_dir_if_needed(ex_plas_inc_write_path)
+def create_inc_factor_dirs():
+    create_dir_if_needed(incfac_out_path)
 
 # def create_orit_dirs():
 #   # orit files

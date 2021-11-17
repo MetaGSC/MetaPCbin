@@ -32,4 +32,4 @@ def count_kmers(seq2vec_path, threads, frag_count):
     except Exception as err:
         print_error(f"Error generating kmer counts: {err}")
 
-    print_log("Generating kmer counts completed.")
+    print_log("Generating kmer counts completed.\n")
