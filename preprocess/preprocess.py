@@ -7,6 +7,7 @@ from preprocess.circular import calc_circularity
 from preprocess.gc_content import gc_content
 from preprocess.inc_fac import calc_inc_factor
 from preprocess.orit import calc_orit
+from preprocess.rrna import calc_rrna
 from constants import *
 from helpers import print_error
 
@@ -52,5 +53,6 @@ def preprocess(args):
         gc_content(files, seq_map)
         calc_inc_factor(args.blastn, files, args.threads, seq_map)
         calc_orit(args.blastn, files, args.threads, seq_map)
+        calc_rrna(args.cmscan, files, args.threads, seq_map)
 
         return 0
