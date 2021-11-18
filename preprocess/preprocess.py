@@ -8,6 +8,7 @@ from preprocess.gc_content import gc_content
 from preprocess.inc_fac import calc_inc_factor
 from preprocess.orit import calc_orit
 from preprocess.rrna import calc_rrna
+from preprocess.write_dataset import write_dataset
 from constants import *
 from helpers import print_error
 
@@ -25,6 +26,7 @@ def preprocess(args):
     ''' Preprocess sequences t0 generate kmer, biomarker features
     '''
     files = []
+    print(args)
     if(args.files != None and args.directory != None):
         print_error("Either -f or -d are required")
         return -1
@@ -38,7 +40,7 @@ def preprocess(args):
                 files = os.listdir(args.directory)
                 files = [os.path.join(args.directory, file) for file in files]
             except Exception as err:
-                print_error(f"Error listing input directory files: {err}\n")
+                print_error(f"Error listing input directory files: {err}")
                 return -1
 
         #kmer count
@@ -54,5 +56,6 @@ def preprocess(args):
         calc_inc_factor(args.blastn, files, args.threads, seq_map)
         calc_orit(args.blastn, files, args.threads, seq_map)
         calc_rrna(args.cmscan, files, args.threads, seq_map)
+        write_dataset(seq_map)
 
         return 0

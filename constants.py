@@ -35,6 +35,7 @@ log_file = "log.txt"
 frag_write_path = "results/fragments"
 kmer_write_path = "results/kmers"
 circ_write_path = "results/circular"
+dataset_path = "results/data.csv"
 
 # temp paths
 circ_out_path = "temp/nucmer_out"

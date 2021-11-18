@@ -74,4 +74,4 @@ def calc_rrna(cmscan_path, files, threads, seq_map):
         print_log("Generating rrna features completed.\n")
 
     except Exception as err:
-        print_error(f"Error calculating rrna factor: {err}\n")
+        print_error(f"Error calculating rrna factor: {err}")

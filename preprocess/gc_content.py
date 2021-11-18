@@ -35,6 +35,6 @@ def gc_content(files, seq_map):
         close_progress_bar(progress_bar)
        
     except Exception as err:
-        print_error(f"Error calculating gc content: {err}\n")
+        print_error(f"Error calculating gc content: {err}")
     
     print_log("Generating gc content features completed.\n")

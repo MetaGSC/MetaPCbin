@@ -80,4 +80,4 @@ def calc_orit(blastn_path, files, threads, seq_map):
         print_log("Generating orit features completed.\n")
 
     except Exception as err:
-        print_error(f"Error calculating orit: {err}\n")
+        print_error(f"Error calculating orit: {err}")
