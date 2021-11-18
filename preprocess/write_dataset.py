@@ -31,5 +31,3 @@ def write_dataset(seq_map):
             
     except IOError:
         print_error("I/O error while writing the biomarkers.")
-
-    
