@@ -15,7 +15,7 @@ def parse_user_arguements():
         required=False, nargs='+'
         )
     parser.add_argument(
-        '-o','--out', help='output file', 
+        '-o','--out', help='output file destination', 
         required=False, type=str
         )
     parser.add_argument(
