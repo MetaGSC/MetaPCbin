@@ -6,7 +6,7 @@ import os
 from progress_bar import *
 from helpers import print_error, print_log
 from constants import *
-from helpers import create_circ_dirs, find_mean, delete_dir_if_exist
+from helpers import create_circ_dirs, find_mean, delete_file_if_exist
 
 def circ_helper(nucmer_path, record):
     ''' Generates the circularity features for single metagenomic record using nucmer
@@ -77,11 +77,11 @@ def circ_helper(nucmer_path, record):
         record_map['circ_mismatches'] = mismatches_mean
         record_map['circ_count'] = count
 
-        delete_dir_if_exist(seq_a_file)
-        delete_dir_if_exist(seq_b_file)
-        delete_dir_if_exist(f"{out_file}.delta")
-        delete_dir_if_exist(f"{out_file}.ntref")
-        delete_dir_if_exist(f"{out_file}.mgaps")
+        delete_file_if_exist(seq_a_file)
+        delete_file_if_exist(seq_b_file)
+        delete_file_if_exist(f"{out_file}.delta")
+        delete_file_if_exist(f"{out_file}.ntref")
+        delete_file_if_exist(f"{out_file}.mgaps")
 
     except Exception as err:
         print_error(f"Error computing circularity for record {record}: {err}")

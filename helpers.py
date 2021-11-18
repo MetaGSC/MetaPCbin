@@ -30,6 +30,10 @@ def delete_dir_if_exist(path):
   if os.path.exists(path):
     shutil.rmtree(path, ignore_errors=True)
 
+def delete_file_if_exist(path):
+  if os.path.exists(path):
+    os.remove(path)
+
 def create_fragment_dirs():
     create_dir_if_needed(frag_write_path)
 
