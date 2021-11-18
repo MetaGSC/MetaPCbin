@@ -32,12 +32,14 @@ err_file = "error.txt"
 log_file = "log.txt"
 
 # results paths
+all_results_path = "results"
 frag_write_path = "results/fragments"
 kmer_write_path = "results/kmers"
 circ_write_path = "results/circular"
 dataset_path = "results/data.csv"
 
 # temp paths
+all_temp_path = "temp"
 circ_out_path = "temp/nucmer_out"
 circ_split_path = "temp/split"
 incfac_out_path = "temp/incfac"

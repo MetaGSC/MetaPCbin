@@ -2,6 +2,7 @@ import sys
 import argparse
 
 from constants import *
+from helpers import delete_dir_if_exist
 from preprocess.preprocess import preprocess
 
 def parse_user_arguements():
@@ -48,9 +49,16 @@ def parse_user_arguements():
 
     return parser.parse_args()
 
+def reset_env():
+    ''' Clears temporary files of previous runs
+    '''
+    delete_dir_if_exist(all_results_path)
+    delete_dir_if_exist(all_temp_path)
+
 def main(args):
     ''' Driver function that preprocesses and feed data to the model
     '''
+    reset_env()
     ret = preprocess(args)
     # if(ret==0):
         # TODO: call the ML model function here

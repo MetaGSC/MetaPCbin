@@ -1,4 +1,5 @@
 import os
+import shutil
 
 from constants import *
 
@@ -27,7 +28,7 @@ def create_dir_if_needed(path):
 
 def delete_dir_if_exist(path):
   if os.path.exists(path):
-    os.remove(path)
+    shutil.rmtree(path, ignore_errors=True)
 
 def create_fragment_dirs():
     create_dir_if_needed(frag_write_path)
