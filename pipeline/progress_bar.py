@@ -1,4 +1,3 @@
-from time import sleep
 from tqdm import tqdm
 
 def create_progress_bar(desc):

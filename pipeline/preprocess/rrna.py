@@ -3,9 +3,9 @@ import os
 import csv
 from Bio import SeqIO
 
-from helpers import create_rrna_dirs, print_log, print_error
-from constants import *
-from progress_bar import *
+from pipeline.helpers import create_rrna_dirs, print_log, print_error
+from pipeline.constants import *
+from pipeline.progress_bar import *
 
 def calc_rrna(cmscan_path, files, threads, seq_map):
     ''' Generates the rrna features for each sequence using cmscan

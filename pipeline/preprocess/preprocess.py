@@ -1,16 +1,16 @@
 import os
 from Bio import SeqIO
 
-from preprocess.fragment import fragment
-from preprocess.kmer import count_kmers
-from preprocess.circular import calc_circularity
-from preprocess.gc_content import gc_content
-from preprocess.inc_fac import calc_inc_factor
-from preprocess.orit import calc_orit
-from preprocess.rrna import calc_rrna
-from preprocess.write_dataset import write_dataset
-from constants import *
-from helpers import print_error
+from pipeline.preprocess.fragment import fragment
+from pipeline.preprocess.kmer import count_kmers
+from pipeline.preprocess.circular import calc_circularity
+from pipeline.preprocess.gc_content import gc_content
+from pipeline.preprocess.inc_fac import calc_inc_factor
+from pipeline.preprocess.orit import calc_orit
+from pipeline.preprocess.rrna import calc_rrna
+from pipeline.preprocess.write_dataset import write_dataset
+from pipeline.constants import *
+from pipeline.helpers import print_error
 
 def generate_seq_map(files):
     seq_map = {}

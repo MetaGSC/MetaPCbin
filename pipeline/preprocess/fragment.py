@@ -2,9 +2,9 @@ from random import randint
 from Bio import SeqIO
 import os
 
-from progress_bar import *
-from constants import *
-from helpers import create_fragment_dirs, print_error, print_log
+from pipeline.progress_bar import *
+from pipeline.constants import *
+from pipeline.helpers import create_fragment_dirs, print_error, print_log
     
 def frag_generator(files, coverage):
     ''' Iterate through the input files and generate fragments
