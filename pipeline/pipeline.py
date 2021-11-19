@@ -1,9 +1,9 @@
 import os
 import argparse
 
-from constants import *
-from helpers import delete_dir_if_exist, print_error
-from preprocess.preprocess import preprocess
+from .constants import *
+from .helpers import delete_dir_if_exist, print_error
+from .preprocess.preprocess import preprocess
 
 def parse_user_arguements():
     parser = argparse.ArgumentParser(
@@ -76,9 +76,10 @@ def validate_args(args):
                 return -1, files
     return 0, files
 
-def main(args):
+def main():
     ''' Driver function that preprocesses and feed data to the model
     '''
+    args = parse_user_arguements()
     reset_env()
     ret, files = validate_args(args)
     if(ret == 0):
@@ -87,5 +88,4 @@ def main(args):
             # TODO: call the ML model function here
 
 if __name__ == "__main__":
-    args = parse_user_arguements()
-    main(args)
+    main()

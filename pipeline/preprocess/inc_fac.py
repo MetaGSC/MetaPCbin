@@ -2,9 +2,9 @@ import subprocess as sp
 import os
 from Bio import SeqIO
 
-from helpers import create_inc_factor_dirs, print_error, print_log
-from progress_bar import *
-from constants import *
+from pipeline.helpers import create_inc_factor_dirs, print_error, print_log
+from pipeline.progress_bar import *
+from pipeline.constants import *
 
 def calc_inc_factor(blastn_path, files, threads, seq_map):
     ''' Generates the incompatibility factor features for each sequence using blastn

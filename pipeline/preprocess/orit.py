@@ -2,9 +2,9 @@ import subprocess as sp
 import os
 from Bio import SeqIO
 
-from helpers import print_error, create_orit_dirs, print_log
-from constants import *
-from progress_bar import *
+from pipeline.helpers import print_error, create_orit_dirs, print_log
+from pipeline.constants import *
+from pipeline.progress_bar import *
 
 def calc_orit(blastn_path, files, threads, seq_map):
     ''' Generates the orit features for each sequence using blastn

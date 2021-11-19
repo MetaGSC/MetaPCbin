@@ -2,9 +2,9 @@ import subprocess as sp
 import os
 from Bio import SeqIO
 
-from helpers import print_log, print_error
-from progress_bar import *
-from constants import *
+from pipeline.helpers import print_log, print_error
+from pipeline.progress_bar import *
+from pipeline.constants import *
 
 def count_bases(seq):
     ''' Count and return the base % of a sequence
