@@ -59,9 +59,9 @@ def validate_args(args):
     ''' Validates if either -f or -d is provided. Returns the list of input files
     '''
     files = []
-    if(args.files != None and args.directory != None):
-        print_error("Either -f or -d are required")
-        return -1
+    if(args.files == None and args.directory == None):
+        print_error("Error: Either -f or -d are required")
+        return -1, files
     else:
         if(args.files != None):
             # if a series of input files(-f) is specified
