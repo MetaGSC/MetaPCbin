@@ -3,7 +3,29 @@
 MetaGSC pipeline flow that takes a user given sequence and outputs the plasmid probability.
 <!-- Add more details to explain the tool and its process -->
 
-## Prerequisites
+## Configuration
+
+Can be installed via conda, pip or manually. However conda is recommended as it installs the third 
+party dependencies automatically.
+
+### Conda Installation (Recommended)
+
+<!-- To be completed after conda setup -->
+
+All the prerequisites will be installed automatically in the conda environment.
+
+### Pip Installation  
+
+<!-- To be completed after pip setup -->
+
+Pip install will install `tqdm`, `biopython` for you. However `Seq2Vec`, `Infernal`, `Mummer`, 
+`Blast+` listed in the dependencies should be installed manually.
+
+### Manual Installation
+
+Need to install all dependencies manually.
+
+## Dependencies
 
 Following tools should be installed before running the software.
 
@@ -26,14 +48,6 @@ In linux,
 git clone https://github.com/anuradhawick/seq2vec.git
 cd seq2vec
 mkdir build; cd build; cmake ..; make -j8
-```
-
-In OSX,
-```
-git clone https://github.com/anuradhawick/seq2vec.git
-cd seq2vec
-mkdir build; cd build
-cmake -DCMAKE_C_COMPILER=CLANG_PATH _DCMAKE_CXX_COMPILER=CLANG++PATH  ..; make -j8
 ```
 
 ### Infernal (rRNA) - [github link](https://github.com/EddyRivasLab/infernal)
