@@ -8,7 +8,7 @@ import torch
 import torch.nn as nn
 from models.NNModule import Model
 import pickle
-from pipeline.constants import *
+from constants import *
 
 kmer_model = None
 biomer_model = None
