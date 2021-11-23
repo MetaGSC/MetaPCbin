@@ -1,9 +1,9 @@
 import subprocess as sp
-
-from progress_bar import *
-from helpers import create_kmer_dirs, print_error, print_log
-from constants import *
 import os
+
+from pipeline.progress_bar import *
+from pipeline.helpers import create_kmer_dirs, print_error, print_log
+from pipeline.constants import *
 
 def count_kmers(seq2vec_path, threads, frag_count):
     ''' Generates the kmer counts for each fragment using seq2vec

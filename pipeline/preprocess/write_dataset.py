@@ -1,7 +1,7 @@
 import csv
 
-from helpers import print_error, print_log
-from constants import *
+from pipeline.helpers import print_error, print_log
+from pipeline.constants import *
 
 def write_dataset(seq_map):
     ''' Writes all biomarker features into a csv to be used by ML models
@@ -31,5 +31,3 @@ def write_dataset(seq_map):
             
     except IOError:
         print_error("I/O error while writing the biomarkers.")
-
-    

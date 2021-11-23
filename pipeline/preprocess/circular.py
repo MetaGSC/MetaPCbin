@@ -3,10 +3,10 @@ import concurrent.futures
 from Bio import SeqIO
 import os
 
-from progress_bar import *
-from helpers import print_error, print_log
-from constants import *
-from helpers import create_circ_dirs, find_mean, delete_file_if_exist
+from pipeline.progress_bar import *
+from pipeline.helpers import print_error, print_log
+from pipeline.constants import *
+from pipeline.helpers import create_circ_dirs, find_mean, delete_file_if_exist
 
 def circ_helper(nucmer_path, record):
     ''' Generates the circularity features for single metagenomic record using nucmer

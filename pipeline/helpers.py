@@ -1,7 +1,7 @@
 import os
 import shutil
 
-from constants import *
+from .constants import *
 
 def find_mean(sum, divisor):
     if divisor == 0:
