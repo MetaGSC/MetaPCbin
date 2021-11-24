@@ -49,22 +49,22 @@ def calc_orit(blastn_path, files, threads, seq_map):
                         bitscore = float(cols[4])
 
                         if id in matches.keys():
-                            matches[id]['orit_identity'] = \
-                                (matches[id]['orit_identity']*matches[id]['orit_count'] + identity)\
-                                / (matches[id]['orit_count'] + 1)
-                            matches[id]['orit_length'] = \
-                                (matches[id]['orit_length']*matches[id]['orit_count'] + length) \
-                                / (matches[id]['orit_count'] + 1)
-                            matches[id]['orit_bitscore'] = \
-                                (matches[id]['orit_bitscore']*matches[id]['orit_count'] + bitscore)\
-                                / (matches[id]['orit_count'] + 1)
-                            matches[id]['orit_count'] += 1
+                            matches[id]['OriT-identity'] = \
+                                (matches[id]['OriT-identity']*matches[id]['OriT-count'] + identity)\
+                                / (matches[id]['OriT-count'] + 1)
+                            matches[id]['OriT-length'] = \
+                                (matches[id]['OriT-length']*matches[id]['OriT-count'] + length) \
+                                / (matches[id]['OriT-count'] + 1)
+                            matches[id]['OriT-bitscore'] = \
+                                (matches[id]['OriT-bitscore']*matches[id]['OriT-count'] + bitscore)\
+                                / (matches[id]['OriT-count'] + 1)
+                            matches[id]['OriT-count'] += 1
                         else:
                             matches[id] = {
-                                'orit_identity': identity,
-                                'orit_length': length,
-                                'orit_bitscore': bitscore,
-                                'orit_count': 1
+                                'OriT-identity': identity,
+                                'OriT-length': length,
+                                'OriT-bitscore': bitscore,
+                                'OriT-count': 1
                             }
 
             for record in SeqIO.parse(filename, 'fasta'):
@@ -73,7 +73,7 @@ def calc_orit(blastn_path, files, threads, seq_map):
                     seq_map[id].update(matches[id])
                 else:
                     seq_map[id].update(
-                        {'orit_identity':0, 'orit_length':0, 'orit_bitscore':0, 'orit_count':0 })
+                        {'OriT-identity':0, 'OriT-length':0, 'OriT-bitscore':0, 'OriT-count':0 })
                 update_progress_bar(progress_bar, 1)
     
         close_progress_bar(progress_bar)

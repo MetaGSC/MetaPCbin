@@ -72,10 +72,10 @@ def circ_helper(nucmer_path, record):
         alignment_b_mean = find_mean(alignment_b_sum, count)
         mismatches_mean = find_mean(mismatches_sum, count)
 
-        record_map['circ_alignment_a'] = alignment_a_mean
-        record_map['circ_alignment_b'] = alignment_b_mean
-        record_map['circ_mismatches'] = mismatches_mean
-        record_map['circ_count'] = count
+        record_map['Cir-alignment_a_mean'] = alignment_a_mean
+        record_map['Cir-alignment_b_mean'] = alignment_b_mean
+        record_map['Cir-mismatches_mean'] = mismatches_mean
+        record_map['Cir-count'] = count
 
         delete_file_if_exist(seq_a_file)
         delete_file_if_exist(seq_b_file)
