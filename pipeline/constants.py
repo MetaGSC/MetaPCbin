@@ -4,6 +4,7 @@ default_coverage = 5
 
 # int constants
 frag_len = 5000
+frag_cnt_max = 100
 k = 7
 max_frag = 10**6
 DIRECTORY_INPUT = 0
