@@ -47,22 +47,22 @@ def calc_inc_factor(blastn_path, files, threads, seq_map):
                         bitscore = float(cols[4])
 
                         if id in matches.keys():
-                            matches[id]['inc_identity'] = \
-                                (matches[id]['inc_identity']*matches[id]['inc_count'] + identity) \
-                                / (matches[id]['inc_count'] + 1)
-                            matches[id]['inc_length'] = \
-                                (matches[id]['inc_length']*matches[id]['inc_count'] + length) \
-                                / (matches[id]['inc_count'] + 1)
-                            matches[id]['inc_bitscore'] = \
-                                (matches[id]['inc_bitscore']*matches[id]['inc_count'] + bitscore) \
-                                / (matches[id]['inc_count'] + 1)
-                            matches[id]['inc_count'] += 1
+                            matches[id]['IF-identity'] = \
+                                (matches[id]['IF-identity']*matches[id]['IF-count'] + identity) \
+                                / (matches[id]['IF-count'] + 1)
+                            matches[id]['IF-length'] = \
+                                (matches[id]['IF-length']*matches[id]['IF-count'] + length) \
+                                / (matches[id]['IF-count'] + 1)
+                            matches[id]['IF-bitscore'] = \
+                                (matches[id]['IF-bitscore']*matches[id]['IF-count'] + bitscore) \
+                                / (matches[id]['IF-count'] + 1)
+                            matches[id]['IF-count'] += 1
                         else:
                             matches[id] = {
-                                'inc_identity': identity,
-                                'inc_length': length,
-                                'inc_bitscore': bitscore,
-                                'inc_count': 1
+                                'IF-identity': identity,
+                                'IF-length': length,
+                                'IF-bitscore': bitscore,
+                                'IF-count': 1
                             }
 
             for record in SeqIO.parse(filename, 'fasta'):
@@ -71,7 +71,7 @@ def calc_inc_factor(blastn_path, files, threads, seq_map):
                     seq_map[id].update(matches[id])
                 else:
                     seq_map[id].update(
-                        {'inc_identity':0, 'inc_length':0, 'inc_bitscore':0, 'inc_count':0 })
+                        {'IF-identity':0, 'IF-length':0, 'IF-bitscore':0, 'IF-count':0 })
                 update_progress_bar(progress_bar, 1)
     
         close_progress_bar(progress_bar)

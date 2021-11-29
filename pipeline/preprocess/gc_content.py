@@ -11,11 +11,11 @@ def count_bases(seq):
     '''
     sq_ln = len(seq)
     dir = {}
-    dir['a'] = (seq.count("a") + seq.count("A"))/sq_ln
-    dir['c'] = (seq.count("c") + seq.count("C"))/sq_ln
-    dir['g'] = (seq.count("g") + seq.count("G"))/sq_ln
-    dir['t'] = (seq.count("t") + seq.count("T"))/sq_ln
-    dir['gc'] = dir["g"] + dir["c"]
+    dir['a%'] = (seq.count("a") + seq.count("A"))/sq_ln
+    dir['c%'] = (seq.count("c") + seq.count("C"))/sq_ln
+    dir['g%'] = (seq.count("g") + seq.count("G"))/sq_ln
+    dir['t%'] = (seq.count("t") + seq.count("T"))/sq_ln
+    dir['gc-content'] = dir["g%"] + dir["c%"]
     return dir
 
 

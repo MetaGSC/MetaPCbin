@@ -15,7 +15,8 @@ def frag_generator(files, coverage):
             for record in SeqIO.parse(filename, 'fasta'):
                 length = len(record.seq)
                 fragments = []
-                for _ in range(coverage):
+                frag_count = min(frag_cnt_max, int(coverage*(length/frag_len))+1)
+                for _ in range(frag_count):
                     if(length<frag_len):
                         rand_i = 0
                     else:
@@ -25,8 +26,6 @@ def frag_generator(files, coverage):
                         "seq":str(record.seq)[rand_i:rand_i+min(frag_len, length)]}
                         )
                     frag_count+=1
-                    if(length<frag_len):
-                        break
                 yield record.id, fragments
 
         except Exception as err:

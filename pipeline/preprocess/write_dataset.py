@@ -9,11 +9,11 @@ def write_dataset(seq_map):
     print_log("Writing biomarker features...")
     feature_keys = [
         "id",   # record id
-        "circ_alignment_a", "circ_alignment_b", "circ_mismatches", "circ_count",    # circularity
-        "a", "c", "g", "t", "gc", # gc content
-        "inc_identity", "inc_length", "inc_bitscore", "inc_count",   # incompatibility factor
-        "orit_identity", "orit_length", "orit_bitscore", "orit_count",   # orit
-        "rrna_length", "rrna_bitscore", "rrna_count"    # rrna
+        "Cir-alignment_a_mean", "Cir-alignment_b_mean", "Cir-mismatches_mean", "Cir-count",    # circularity
+        "a%", "c%", "g%", "t%", "gc-content", # gc content
+        "IF-identity", "IF-length", "IF-bitscore", "IF-count",   # incompatibility factor
+        "OriT-identity", "OriT-length", "OriT-bitscore", "OriT-count",   # orit
+        "rRNA-length", "rRNA-bitscore", "rRNA-count"    # rrna
         ]
 
     rows = []

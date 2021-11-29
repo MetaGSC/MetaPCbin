@@ -47,18 +47,18 @@ def calc_rrna(cmscan_path, files, threads, seq_map):
                         bitscore = float(cols[14])
 
                         if id in matches.keys():
-                            matches[id]['rrna_length'] = \
-                                (matches[id]['rrna_length']*matches[id]['rrna_count'] + length) \
-                                    / (matches[id]['rrna_count'] + 1)
-                            matches[id]['rrna_bitscore'] = \
-                                (matches[id]['rrna_bitscore']*matches[id]['rrna_count'] + bitscore)\
-                                    / (matches[id]['rrna_count'] + 1)
-                            matches[id]['rrna_count'] += 1
+                            matches[id]['rRNA-length'] = \
+                                (matches[id]['rRNA-length']*matches[id]['rRNA-count'] + length) \
+                                    / (matches[id]['rRNA-count'] + 1)
+                            matches[id]['rRNA-bitscore'] = \
+                                (matches[id]['rRNA-bitscore']*matches[id]['rRNA-count'] + bitscore)\
+                                    / (matches[id]['rRNA-count'] + 1)
+                            matches[id]['rRNA-count'] += 1
                         else:
                             matches[id] = {
-                                'rrna_length': length,
-                                'rrna_bitscore': bitscore,
-                                'rrna_count': 1
+                                'rRNA-length': length,
+                                'rRNA-bitscore': bitscore,
+                                'rRNA-count': 1
                             }
 
             for record in SeqIO.parse(filename, 'fasta'):
@@ -67,7 +67,7 @@ def calc_rrna(cmscan_path, files, threads, seq_map):
                     seq_map[id].update(matches[id])
 
                 else:
-                    seq_map[id].update({'rrna_length': 0, 'rrna_bitscore': 0, 'rrna_count': 0})
+                    seq_map[id].update({'rRNA-length': 0, 'rRNA-bitscore': 0, 'rRNA-count': 0})
                 update_progress_bar(progress_bar, 1)
 
         close_progress_bar(progress_bar)
