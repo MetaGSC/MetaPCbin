@@ -4,6 +4,7 @@ import argparse
 from .constants import *
 from .helpers import delete_dir_if_exist, print_error
 from .preprocess.preprocess import preprocess
+from .predict.predict import predict
 
 def parse_user_arguements():
     parser = argparse.ArgumentParser(
@@ -16,7 +17,7 @@ def parse_user_arguements():
         )
     parser.add_argument(
         '-o','--out', help='output file destination', 
-        required=False, type=str
+        required=False, type=str, default=all_results_path
         )
     parser.add_argument(
         '-d','--directory', help='directory of input fasta files', 
@@ -84,8 +85,8 @@ def main():
     ret, files = validate_args(args)
     if(ret == 0):
         ret = preprocess(args, files)
-        # if(ret==0):
-            # TODO: call the ML model function here
+        if(ret==0):
+            predict(args.out)
 
 if __name__ == "__main__":
     main()

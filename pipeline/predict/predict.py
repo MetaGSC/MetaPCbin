@@ -8,9 +8,11 @@ import torch
 import torch.nn as nn
 import matplotlib.pyplot as plt
 import seaborn as sns
-from models.NNModule import Model
 import pickle
-from constants import *
+import os
+
+from pipeline.model.NNModule import Model
+from pipeline.constants import *
 
 kmer_model = None
 biomer_model = None
@@ -32,7 +34,7 @@ def setup_biomer_model(model_path):
 
 
 def get_sequence_data(scaler_path):
-    df = pd.read_csv(predict_input_dir+'/data.csv')
+    df = pd.read_csv(all_results_path+'/data.csv')
     features = list(df.columns)
     features.remove('id')
     features.sort()
@@ -43,7 +45,7 @@ def get_sequence_data(scaler_path):
 
 
 def read_kmer_file(seq_id):
-    array = np.genfromtxt(predict_input_dir+"/kmers/"+seq_id, dtype=np.float64)
+    array = np.genfromtxt(all_results_path+"/kmers/"+seq_id, dtype=np.float64)
     if(len(array.shape) == 1):
         temp = []
         temp.append(array)
@@ -75,8 +77,8 @@ def predict_kmer(sequence_id):
     return probs_list
 
 
-if __name__ == "__main__":
-
+def predict(out_path):
+    global kmer_model
     predictions = []
     biomer_model = setup_biomer_model(biomer_model_path)
     kmer_model = setup_kmer_model(kmer_model_path)
@@ -96,25 +98,31 @@ if __name__ == "__main__":
         # print(
         #     f"biomer result: {biomer_model.predict(selected)} biomer result probs: {biomer_model.predict_proba(selected)}")
         # print(full_prediction)
-    
     print('Writing predictions...')
     predictions_df = pd.DataFrame(predictions, columns=['seq_id', 'fragment_count', 'kmer_chro_prob',
                                   'kmer_plas_prob', 'kmer_prediction_avg', 'biomer_chro_prob', 'biomer_plas_prob', 'biomer_prediction'])
+
     predictions_df['sum'] = (
         predictions_df['kmer_plas_prob'] + predictions_df['biomer_plas_prob'])/2
     predictions_df['product'] = (
         predictions_df['kmer_plas_prob'] * predictions_df['biomer_plas_prob'])**0.5
-    predictions_df.to_csv('results/predictions.csv', index=False)
+    predictions_df.to_csv(os.path.join(
+        out_path, 'predictions.csv'), index=False)
 
     print('Plotting graphs...')
 
     sns.scatterplot(data=predictions_df,
                     x="kmer_plas_prob", y="biomer_plas_prob", alpha=0.4)
-    plt.savefig('results/predictions_scatter.png')
+    plt.savefig(os.path.join(out_path, 'predictions_scatter.png'))
     plt.clf()
     sns.histplot(data=predictions_df, x="sum")
-    plt.savefig('results/predictions_sum.png')
+    plt.savefig(os.path.join(out_path, 'predictions_sum.png'))
     plt.clf()
     sns.histplot(data=predictions_df, x="product")
-    plt.savefig('results/predictions_product.png')
+    plt.savefig(os.path.join(out_path, 'predictions_predict.png'))
     plt.clf()
+
+
+
+if __name__ == "__main__":
+    predict()

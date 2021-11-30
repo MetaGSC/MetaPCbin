@@ -46,3 +46,12 @@ circ_split_path = "temp/split"
 incfac_out_path = "temp/incfac"
 orit_out_path = "temp/orit"
 rrna_out_path = "temp/rrna"
+
+# predict constants
+kmer_model_path = 'models/kmerModule100K.pth'
+biomer_model_path = 'models/biomer_model.sav'
+biomer_scalar_path = 'models/biomer_minmax_scaler.sav'
+
+inputFeaturesSize = int((4**k) / 2)
+layer_array = [512, 256]
+outputSize = 2
