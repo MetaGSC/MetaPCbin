@@ -1,6 +1,7 @@
 from tqdm import tqdm
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.preprocessing import MinMaxScaler
+from scipy.interpolate import make_interp_spline
 import numpy as np
 import pandas as pd
 from numpy.random import randint
@@ -113,6 +114,21 @@ def predict(out_path):
 
     sns.scatterplot(data=predictions_df,
                     x="kmer_plas_prob", y="biomer_plas_prob", alpha=0.4)
+
+    xu = np.array([0.25, 0.35355, 0.5, 0.7071, 1])
+    yu = np.array([1, 0.7071, 0.5, 0.35355, 0.25])
+    X_Y_Spline = make_interp_spline(xu, yu)
+    X_ = np.linspace(xu.min(), xu.max(), 500)
+    Y_ = X_Y_Spline(X_)
+    plt.plot(X_, Y_)
+
+    xu = np.array([0, 0.2,  0.4,  0.6,  0.8,  1])
+    yu = np.array([1, 0.8, 0.6, 0.4, 0.2, 0])
+    X_Y_Spline = make_interp_spline(xu, yu)
+    X_ = np.linspace(xu.min(), xu.max(), 500)
+    Y_ = X_Y_Spline(X_)
+    plt.plot(X_, Y_)
+    
     plt.savefig(os.path.join(out_path, 'predictions_scatter.png'))
     plt.clf()
     sns.histplot(data=predictions_df, x="sum")
