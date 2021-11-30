@@ -17,7 +17,7 @@ def parse_user_arguements():
         )
     parser.add_argument(
         '-o','--out', help='output file destination', 
-        required=False, type=str
+        required=False, type=str, default=all_results_path
         )
     parser.add_argument(
         '-d','--directory', help='directory of input fasta files', 
@@ -86,7 +86,7 @@ def main():
     if(ret == 0):
         ret = preprocess(args, files)
         if(ret==0):
-            predict()
+            predict(args.out)
 
 if __name__ == "__main__":
     main()

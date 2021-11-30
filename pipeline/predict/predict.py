@@ -9,6 +9,7 @@ import torch.nn as nn
 import matplotlib.pyplot as plt
 import seaborn as sns
 import pickle
+import os
 
 from pipeline.model.NNModule import Model
 from pipeline.constants import *
@@ -75,7 +76,7 @@ def predict_kmer(sequence_id):
     probs_list.append(total/len(kmer_arrays))
     return probs_list
 
-def predict():
+def predict(out_path):
     global kmer_model
     predictions = []
     biomer_model = setup_biomer_model(biomer_model_path)
@@ -96,11 +97,11 @@ def predict():
         #     f"biomer result: {biomer_model.predict(selected)} biomer result probs: {biomer_model.predict_proba(selected)}")
         # print(full_prediction)
     predictions_df = pd.DataFrame(predictions,columns=['seq_id','fragment_count','kmer_chro_prob','kmer_plas_prob','kmer_prediction_avg','biomer_chro_prob','biomer_plas_prob','biomer_prediction'])
-    predictions_df.to_csv('results/predictions.csv', index=False)
+    predictions_df.to_csv(os.path.join(out_path, 'predictions.csv'), index=False)
 
     sns.scatterplot(data=predictions_df,
                     x="kmer_plas_prob", y="biomer_plas_prob", alpha=0.4)
-    plt.savefig('results/predictions.png')
+    plt.savefig(os.path.join(out_path, 'predictions.png'))
 
 
 if __name__ == "__main__":
