@@ -10,7 +10,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import pickle
 
-from models.NNModule import Model
+from pipeline.model.NNModule import Model
 from pipeline.constants import *
 
 kmer_model = None
@@ -76,6 +76,7 @@ def predict_kmer(sequence_id):
     return probs_list
 
 def predict():
+    global kmer_model
     predictions = []
     biomer_model = setup_biomer_model(biomer_model_path)
     kmer_model = setup_kmer_model(kmer_model_path)
@@ -100,18 +101,6 @@ def predict():
     sns.scatterplot(data=predictions_df,
                     x="kmer_plas_prob", y="biomer_plas_prob", alpha=0.4)
     plt.savefig('results/predictions.png')
-
-    sns.swarmplot(data=predictions_df,
-                    x="kmer_plas_prob", y="biomer_plas_prob")
-    plt.savefig('results/predictions1.png')
-
-    sns.jointplot(data=predictions_df,
-                  x="kmer_plas_prob", y="biomer_plas_prob", kind="hex", hue="fragment_count")
-    plt.savefig('results/predictions2.png')
-
-    sns.jointplot(data=predictions_df,
-                  x="kmer_plas_prob", y="biomer_plas_prob", kind="reg", hue="fragment_count")
-    plt.savefig('results/predictions3.png')
 
 
 if __name__ == "__main__":

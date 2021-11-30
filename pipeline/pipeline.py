@@ -4,7 +4,7 @@ import argparse
 from .constants import *
 from .helpers import delete_dir_if_exist, print_error
 from .preprocess.preprocess import preprocess
-from pipeline.predict import predict
+from .predict.predict import predict
 
 def parse_user_arguements():
     parser = argparse.ArgumentParser(
