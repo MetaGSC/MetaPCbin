@@ -65,16 +65,17 @@ def predict_kmer(sequence_id):
     kmer_arrays = read_kmer_file(sequence_id)
     # print(f'\nseq_id: {sequence_id} count: {len(kmer_arrays)}')
     total = 0
-    tot_probs = torch.tensor([0.0,0.0])
+    tot_probs = torch.tensor([0.0, 0.0])
     for m in kmer_arrays:
         prediction, prob_tensor = get_prediction(torch.tensor(m), kmer_model)
         tot_probs += prob_tensor
         total += prediction
     # print(f'kmer_plasmid_avg: {total/len(kmer_arrays)} prob_total = {tot_probs}')
     probs_list = (tot_probs/(len(kmer_arrays))).tolist()
-    probs_list.insert(0,len(kmer_arrays))
+    probs_list.insert(0, len(kmer_arrays))
     probs_list.append(total/len(kmer_arrays))
     return probs_list
+
 
 def predict(out_path):
     global kmer_model
@@ -85,23 +86,42 @@ def predict(out_path):
 
     seq_list = list(sequence_df['id'].unique())
     for seq in tqdm(seq_list):
-        kmer_prediction= predict_kmer(seq)
+        kmer_prediction = predict_kmer(seq)
         full_prediction = [seq]
         full_prediction.extend(kmer_prediction)
         # print(full_prediction)
         selected = sequence_df.loc[sequence_df['id'] == seq][features]
-        full_prediction.extend((biomer_model.predict_proba(selected))[0].tolist())
+        full_prediction.extend(
+            (biomer_model.predict_proba(selected))[0].tolist())
         full_prediction.append((biomer_model.predict(selected)).item())
         predictions.append(full_prediction)
         # print(
         #     f"biomer result: {biomer_model.predict(selected)} biomer result probs: {biomer_model.predict_proba(selected)}")
         # print(full_prediction)
-    predictions_df = pd.DataFrame(predictions,columns=['seq_id','fragment_count','kmer_chro_prob','kmer_plas_prob','kmer_prediction_avg','biomer_chro_prob','biomer_plas_prob','biomer_prediction'])
-    predictions_df.to_csv(os.path.join(out_path, 'predictions.csv'), index=False)
+    print('Writing predictions...')
+    predictions_df = pd.DataFrame(predictions, columns=['seq_id', 'fragment_count', 'kmer_chro_prob',
+                                  'kmer_plas_prob', 'kmer_prediction_avg', 'biomer_chro_prob', 'biomer_plas_prob', 'biomer_prediction'])
+
+    predictions_df['sum'] = (
+        predictions_df['kmer_plas_prob'] + predictions_df['biomer_plas_prob'])/2
+    predictions_df['product'] = (
+        predictions_df['kmer_plas_prob'] * predictions_df['biomer_plas_prob'])**0.5
+    predictions_df.to_csv(os.path.join(
+        out_path, 'predictions.csv'), index=False)
+
+    print('Plotting graphs...')
 
     sns.scatterplot(data=predictions_df,
                     x="kmer_plas_prob", y="biomer_plas_prob", alpha=0.4)
-    plt.savefig(os.path.join(out_path, 'predictions.png'))
+    plt.savefig(os.path.join(out_path, 'predictions_scatter.png'))
+    plt.clf()
+    sns.histplot(data=predictions_df, x="sum")
+    plt.savefig(os.path.join(out_path, 'predictions_sum.png'))
+    plt.clf()
+    sns.histplot(data=predictions_df, x="product")
+    plt.savefig(os.path.join(out_path, 'predictions_predict.png'))
+    plt.clf()
+
 
 
 if __name__ == "__main__":
