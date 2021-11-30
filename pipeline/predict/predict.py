@@ -8,9 +8,10 @@ import torch
 import torch.nn as nn
 import matplotlib.pyplot as plt
 import seaborn as sns
-from models.NNModule import Model
 import pickle
-from constants import *
+
+from models.NNModule import Model
+from pipeline.constants import *
 
 kmer_model = None
 biomer_model = None
@@ -32,7 +33,7 @@ def setup_biomer_model(model_path):
 
 
 def get_sequence_data(scaler_path):
-    df = pd.read_csv(predict_input_dir+'/data.csv')
+    df = pd.read_csv(all_results_path+'/data.csv')
     features = list(df.columns)
     features.remove('id')
     features.sort()
@@ -43,7 +44,7 @@ def get_sequence_data(scaler_path):
 
 
 def read_kmer_file(seq_id):
-    array = np.genfromtxt(predict_input_dir+"/kmers/"+seq_id, dtype=np.float64)
+    array = np.genfromtxt(all_results_path+"/kmers/"+seq_id, dtype=np.float64)
     if(len(array.shape) == 1):
         temp = []
         temp.append(array)
@@ -74,9 +75,7 @@ def predict_kmer(sequence_id):
     probs_list.append(total/len(kmer_arrays))
     return probs_list
 
-
-if __name__ == "__main__":
-
+def predict():
     predictions = []
     biomer_model = setup_biomer_model(biomer_model_path)
     kmer_model = setup_kmer_model(kmer_model_path)
@@ -113,3 +112,7 @@ if __name__ == "__main__":
     sns.jointplot(data=predictions_df,
                   x="kmer_plas_prob", y="biomer_plas_prob", kind="reg", hue="fragment_count")
     plt.savefig('results/predictions3.png')
+
+
+if __name__ == "__main__":
+    predict()
