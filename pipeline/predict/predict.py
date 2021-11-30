@@ -125,4 +125,4 @@ def predict(out_path):
 
 
 if __name__ == "__main__":
-    predict()
+    predict(all_results_path)
