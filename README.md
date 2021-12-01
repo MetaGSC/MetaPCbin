@@ -1,6 +1,6 @@
-# pipeline
+# MetaPCbin
 
-MetaGSC pipeline flow that takes a user given sequence and outputs the plasmid probability.
+MetaPCbinflow that takes a user given sequence and outputs the plasmid probability.
 <!-- Add more details to explain the tool and its process -->
 
 ## Configuration
