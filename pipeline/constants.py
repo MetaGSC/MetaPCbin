@@ -9,6 +9,8 @@ k = 7
 max_frag = 10**6
 DIRECTORY_INPUT = 0
 FILE_INPUT = 1
+CHROM_PRED_UPPER_BOUND = 0.3
+PLAS_PRED_LOWER_BOUND = 0.7
 
 # progress bar descriptions
 frag_bar_desc  = "fragments             "
@@ -51,6 +53,7 @@ rrna_out_path = "temp/rrna"
 kmer_model_path = 'models/kmerModule100K.pth'
 biomer_model_path = 'models/biomer_model.sav'
 biomer_scalar_path = 'models/biomer_minmax_scaler.sav'
+logistic_model_path = 'models/logistic_model.sav'
 
 inputFeaturesSize = int((4**k) / 2)
 layer_array = [512, 256]
