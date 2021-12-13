@@ -2,14 +2,12 @@ import pickle
 from tqdm import tqdm
 import os
 import pandas as pd
-from sklearn.linear_model import LogisticRegression
 
 from pipeline.constants import *
 
 def setup_logistic_model(model_path):
-    model = LogisticRegression(random_state=0, solver='liblinear', penalty='l1')
-    model = pickle.load(open(model_path, 'rb'))
-    return model
+    pipe = pickle.load(open(model_path, 'rb'))
+    return pipe
 
 def get_feature_data(out_path):
     df = pd.read_csv(os.path.join(out_path, 'predictions.csv'))
