@@ -11,7 +11,7 @@ def setup_logistic_model(model_path):
 
 def get_feature_data(out_path):
     df = pd.read_csv(os.path.join(out_path, 'predictions.csv'))
-    features = ["fragment_count", "kmer_plas_prob", "biomer_plas_prob"]
+    features = ["kmer_plas_prob", "biomer_plas_prob"]
     return df, features
 
 def get_sequence_class(prob):
