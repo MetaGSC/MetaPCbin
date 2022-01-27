@@ -32,7 +32,7 @@ def write_dataset(seq_map):
 
         with open(seqlen_path, 'w') as f:
             writer = csv.writer(f)
-            writer.writerow(["id", "length"])
+            writer.writerow(["seq_id", "length"])
             writer.writerows(len_rows)
 
         print_log("Writing biomarker features completed\n")
