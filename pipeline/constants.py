@@ -40,6 +40,7 @@ frag_write_path = "results/fragments"
 kmer_write_path = "results/kmers"
 circ_write_path = "results/circular"
 dataset_path = "results/data.csv"
+seqlen_path = "results/seqlen.csv"
 
 # temp paths
 all_temp_path = "temp"

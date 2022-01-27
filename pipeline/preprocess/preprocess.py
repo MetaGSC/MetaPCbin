@@ -17,7 +17,7 @@ def generate_seq_map(files):
     for file in files:
         try:
             for record in SeqIO.parse(file, 'fasta'):
-                seq_map[record.id] = {'filepath':file}
+                seq_map[record.id] = {'filepath':file, 'length':len(record.seq)}
         except Exception as err:
             print_error(f"Error reading fasta file {file}: {err}")
     return seq_map

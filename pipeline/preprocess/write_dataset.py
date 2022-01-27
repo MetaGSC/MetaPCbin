@@ -17,8 +17,10 @@ def write_dataset(seq_map):
         ]
 
     rows = []
+    len_rows = []
     for key in seq_map.keys():
         row = [seq_map[key][x] for x in feature_keys[1:]]
+        len_rows.append([key, seq_map[key]['length']])
         row.insert(0, key)
         rows.append(row)
 
@@ -27,7 +29,13 @@ def write_dataset(seq_map):
             writer = csv.writer(f)
             writer.writerow(feature_keys)
             writer.writerows(rows)
+
+        with open(seqlen_path, 'w') as f:
+            writer = csv.writer(f)
+            writer.writerow(["id", "length"])
+            writer.writerows(len_rows)
+
         print_log("Writing biomarker features completed\n")
-            
+
     except IOError:
         print_error("I/O error while writing the biomarkers.")
