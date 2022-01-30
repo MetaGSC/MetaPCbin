@@ -2,6 +2,7 @@ import pickle
 from tqdm import tqdm
 import os
 import pandas as pd
+import sys
 
 from pipeline.constants import *
 
@@ -11,7 +12,7 @@ def setup_logistic_model(model_path):
 
 def get_feature_data(out_path):
     df = pd.read_csv(os.path.join(out_path, 'predictions.csv'))
-    features = ["kmer_plas_prob", "biomer_plas_prob"]
+    features = ["fragment_count", "kmer_plas_prob", "biomer_plas_prob"]
     return df, features
 
 def get_sequence_class(prob):
@@ -43,4 +44,5 @@ def predict_combined(out_path):
     data_df.to_csv(os.path.join(out_path, 'predictions.csv'), index=False)
     
 if __name__ == "__main__":
-    predict_combined(all_results_path)
+    out_path = sys.argv[1]
+    predict_combined(out_path)
