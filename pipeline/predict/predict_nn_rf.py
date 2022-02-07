@@ -34,8 +34,8 @@ def setup_biomer_model(model_path):
     return model
 
 
-def get_sequence_data(scaler_path):
-    df = pd.read_csv(all_results_path+'/data.csv')
+def get_sequence_data(scaler_path, out_path):
+    df = pd.read_csv(os.path.join(out_path, 'data.csv'))
     features = list(df.columns)
     features.remove('id')
     features.sort()
@@ -45,8 +45,8 @@ def get_sequence_data(scaler_path):
     return df, features
 
 
-def read_kmer_file(seq_id):
-    array = np.genfromtxt(all_results_path+"/kmers/"+seq_id, dtype=np.float64)
+def read_kmer_file(seq_id, out_path):
+    array = np.genfromtxt(os.path.join(out_path, "kmers", seq_id), dtype=np.float64)
     if(len(array.shape) == 1):
         temp = []
         temp.append(array)
@@ -62,8 +62,8 @@ def get_prediction(value, model):
     return preds.item(), yb
 
 
-def predict_kmer(sequence_id):
-    kmer_arrays = read_kmer_file(sequence_id)
+def predict_kmer(sequence_id, out_path):
+    kmer_arrays = read_kmer_file(sequence_id, out_path)
     # print(f'\nseq_id: {sequence_id} count: {len(kmer_arrays)}')
     total = 0
     tot_probs = torch.tensor([0.0, 0.0])
@@ -83,11 +83,11 @@ def predict_nn_rf(out_path):
     predictions = []
     biomer_model = setup_biomer_model(biomer_model_path)
     kmer_model = setup_kmer_model(kmer_model_path)
-    sequence_df, features = get_sequence_data(biomer_scalar_path)
+    sequence_df, features = get_sequence_data(biomer_scalar_path, out_path)
 
     seq_list = list(sequence_df['id'].unique())
     for seq in tqdm(seq_list):
-        kmer_prediction = predict_kmer(seq)
+        kmer_prediction = predict_kmer(seq, out_path)
         full_prediction = [seq]
         full_prediction.extend(kmer_prediction)
         # print(full_prediction)
