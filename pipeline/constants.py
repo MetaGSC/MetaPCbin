@@ -11,6 +11,7 @@ DIRECTORY_INPUT = 0
 FILE_INPUT = 1
 CHROM_PRED_UPPER_BOUND = 0.3
 PLAS_PRED_LOWER_BOUND = 0.7
+KMER_MODEL_LEN_THRESHOLD = 5000
 
 # progress bar descriptions
 frag_bar_desc  = "fragments             "
@@ -40,6 +41,7 @@ frag_write_path = "results/fragments"
 kmer_write_path = "results/kmers"
 circ_write_path = "results/circular"
 dataset_path = "results/data.csv"
+seqlen_path = "results/seqlen.csv"
 
 # temp paths
 all_temp_path = "temp"

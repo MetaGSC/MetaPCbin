@@ -15,6 +15,10 @@ def get_feature_data(out_path):
     features = ["fragment_count", "kmer_plas_prob", "biomer_plas_prob"]
     return df, features
 
+def get_sequence_lengths():
+    len_df = pd.read_csv(os.path.join(seqlen_path))
+    return len_df
+
 def get_sequence_class(prob):
     if(prob<=CHROM_PRED_UPPER_BOUND):
         return 'chromosome'
@@ -26,12 +30,17 @@ def predict_combined(out_path):
     predictions = []
     logistic_model = setup_logistic_model(logistic_model_path)
     data_df, features = get_feature_data(out_path)
+    len_df = get_sequence_lengths()
 
     data_list = list(data_df['seq_id'].unique())
     for seq in tqdm(data_list):
         full_prediction = [seq]
         selected = data_df.loc[data_df['seq_id'] == seq][features]
-        proba = logistic_model.predict_proba(selected)[0][1]
+        length = len_df.loc[len_df['seq_id'] == seq]['length'].values[0]
+        
+        proba = selected.iloc[0]['kmer_plas_prob']
+        if(length>= KMER_MODEL_LEN_THRESHOLD):
+            proba = logistic_model.predict_proba(selected)[0][1]
         seq_class = get_sequence_class(proba)
         full_prediction.append(proba)
         full_prediction.append(seq_class)
