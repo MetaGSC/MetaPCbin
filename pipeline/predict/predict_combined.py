@@ -15,7 +15,7 @@ def get_sequence_lengths(out_path):
     return len_df
 
 def get_feature_data(out_path):
-    feature_df = pd.read_csv(os.path.join(out_path, 'predictions.csv'))
+    feature_df = pd.read_csv(os.path.join(out_path, 'nn_rf_predictions.csv'))
     len_df = get_sequence_lengths(out_path)
     df = pd.merge(feature_df, len_df, on='seq_id', how="left")
     features = ["fragment_count", "kmer_plas_prob", "biomer_plas_prob", "length"]
