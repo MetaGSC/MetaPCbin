@@ -147,6 +147,3 @@ directory.
 
 - The biomarker features required for the random forest model is saved to the 
 [results/data.csv](results/data.csv) file.
-
-## Output
-<!-- To be completed -->
